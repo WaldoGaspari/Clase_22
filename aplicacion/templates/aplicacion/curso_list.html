@@ -1,0 +1,59 @@
+{% extends 'aplicacion/base.html' %}
+{% load static %}
+
+{% block titulo %}
+    Cursos
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<table>
+    <tr>
+        <td width="200"><h2>Cursos</h2></td>
+        <td>
+            <a
+            href="{% url 'create_curso' %}"
+            class="btn btn-primary btn-sm"
+            ><i class="fa fa-plus fa-lg" title="New Record"> </i>
+            </a>
+        </td>
+    </tr>
+</table>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Comision</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for curso in curso_list %}
+    <tr>
+        <td>{{ curso.id }}</td>
+        <td>{{ curso.nombre }}</td>
+        <td>{{ curso.comision }}</td>
+
+        <td>
+            <a
+              href="{% url 'update_curso' curso.id %}"
+              class="btn btn-primary"
+              style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+              ><i class="fa fa-edit fa-sm" title="Edit Record"></i>
+            </a>
+            <a
+              href="{% url 'delete_curso' curso.id %}"
+              class="btn btn-danger"
+              style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+              ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+            </a>
+          </td>        
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock contenido %}
